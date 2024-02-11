@@ -1,0 +1,31 @@
+class Solution {
+    public int rob(int[] nums) {
+        int[] pr=new int[nums.length+1];
+        if(nums.length==1)return nums[0];
+        pr[1]=nums[0];
+        int y=0;
+        for(int i=1; i<nums.length; i++){
+            pr[i+1]=Math.max(pr[i-1]+nums[i],pr[i]);
+        }
+        return pr[nums.length];
+    }
+}
+
+class Solution {
+    public int rob(int[] nums) {
+        int[] pr=new int[nums.length];
+        if(nums.length==1)return nums[0];
+        pr[0]=nums[0];
+        int y=0;
+        for(int i=1; i<nums.length; i++){
+            if(i-2<0){
+                y=nums[i];
+            }
+            else{
+                y=nums[i]+pr[i-2];
+            }
+            pr[i]=Math.max(pr[i-1],y);
+        }
+        return pr[nums.length-1];
+    }
+}
