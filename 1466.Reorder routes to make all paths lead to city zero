@@ -1,0 +1,24 @@
+class Solution {
+    public int minReorder(int n, int[][] connections) {
+        List<Integer>[] graph=new List[n];
+        for(int i=0; i<n; i++){
+            graph[i]=new ArrayList<>();
+        } 
+        for(int[] a:connections){
+            graph[a[0]].add(a[1]);
+            graph[a[1]].add(-a[0]);
+        }
+        return dfs(0,graph,-1) ;
+    }
+    int dfs(int c,List<Integer>[] graph,int p){
+        int d=0;
+        for(int k:graph[c]){
+            if(Math.abs(k)!=p){
+            if(k>0)
+            d=d+1;
+           d=d+dfs(Math.abs(k),graph,c);
+        }
+     }
+    return d;
+    }
+}
