@@ -1,0 +1,20 @@
+class Solution {
+    long M = 1000000007;
+    public int rangeSum(int[] nums, int n, int left, int right) {
+        List<Long> a=new ArrayList<>();
+        for(int i=0; i<nums.length; i++){
+            long sum=0;
+            for(int j=i; j<nums.length; j++){
+                sum=sum+nums[j];
+                a.add(sum);
+            }
+        }
+        Collections.sort(a);
+        long ans=0;
+        for(int i=left; i<=right; i++){
+            ans=ans+a.get(i-1);
+        }
+        int x= Math.toIntExact(ans%M);;
+        return x;
+    }
+}
