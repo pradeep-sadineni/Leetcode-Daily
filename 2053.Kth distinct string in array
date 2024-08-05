@@ -1,0 +1,24 @@
+class Solution {
+    public String kthDistinct(String[] arr, int k) {
+        List<String> a=new ArrayList<>();
+        HashMap<String,Integer> p=new HashMap<>();
+        for(String i:arr){
+            if(!p.containsKey(i)){
+                p.put(i,1);
+            }
+            else{
+                int m=p.get(i);
+                p.put(i,m+1);
+            }
+        }
+        for(String i:arr){
+            if(p.get(i)==1){
+                a.add(i);
+            }
+        }
+        if(a.size()<k){
+            return "";
+        }
+        return a.get(k-1);
+    }
+}
