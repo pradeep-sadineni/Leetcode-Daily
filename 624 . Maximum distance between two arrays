@@ -1,0 +1,37 @@
+class Solution {
+    public int maxDistance(List<List<Integer>> arrays) {
+        int min=999999;
+        int max=-999999;
+        int index=-1;
+        for(int i=0; i<arrays.size(); i++){
+           if(arrays.get(i).get(0)<min){
+             min=arrays.get(i).get(0);
+             index=i;
+           }
+        }
+        for(int i=0; i<arrays.size(); i++){
+            if(i!=-1 && i!=index){
+                int x=arrays.get(i).size();
+                max=Math.max(max,arrays.get(i).get(x-1));
+            }
+        }
+        int ans1=Math.abs(min-max);
+        min=999999;
+        max=-999999;
+        index=-1;
+        for(int i=0; i<arrays.size(); i++){
+            int x=arrays.get(i).size();
+           if(arrays.get(i).get(x-1)>max){
+             max=arrays.get(i).get(x-1);
+             index=i;
+           }
+        }
+        for(int i=0; i<arrays.size(); i++){
+            if(i!=-1 && i!=index){
+                min=Math.min(min,arrays.get(i).get(0));
+            }
+        }
+        int ans2=Math.abs(min-max);
+        return Math.max(ans1,ans2);
+    }
+}
