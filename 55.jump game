@@ -1,0 +1,15 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int g=0;
+        for(int n:nums){
+            if(g<0){
+                return false;
+            }
+            else if(n>g){
+                g=n;
+            }
+            g=g-1;
+        }
+        return true;
+    }
+}
